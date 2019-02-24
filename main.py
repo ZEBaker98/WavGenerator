@@ -5,7 +5,15 @@ from waves.sin_wave import SinWave
 from waves.cos_wave import CosWave
 from waves.pulse_wave import PulseWave
 
+from hydrogen import hydrogen
+
 def main():
+
+  hydrogen_a4_func = CompoundWave.fromDict(SinWave, hydrogen(440))
+  WavWriter('hydrogen_A4.wav', hydrogen_a4_func, 3, smooth=True).write()
+
+  hydrogen_a4_func = CompoundWave.fromDict(SinWave, {**hydrogen(523.25), **hydrogen(659.25), **hydrogen(783.99)})
+  WavWriter('hydrogen_C4_triad.wav', hydrogen_a4_func, 3, smooth=True).write()
 
   a4_func = SinWave(440, 1)
   WavWriter('A4.wav', a4_func, 3, smooth=True).write()
